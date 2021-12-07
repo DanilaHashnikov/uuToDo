@@ -1,0 +1,17 @@
+{
+  "product": "uu_to_do",
+  "version": "0.1.0",
+  "license": "License Commercial",
+  "description": {
+    "en": "",
+    "cs": ""
+  },
+  "devkit": {
+    "development": {
+      "appBoxLocationUri": "----- VALUE REQUIRED -----",
+      "appDeploymentUri": null
+    }
+  },
+  "uu_to_do-hi": {},
+  "uu_to_do-server": {}
+}
