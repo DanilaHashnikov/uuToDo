@@ -4,12 +4,8 @@ import {createVisualComponent, useEffect} from "uu5g04-hooks";
 import Config from "./config/config";
 import Uu5Tiles from "uu5tilesg02";
 import {useContextModal} from "./common/modal-manager"
-
 import {useItem} from "./context/context";
-import {useList} from "../list/context/context"
-
 import {ItemUpdateForm, ItemUpdateHeader, ItemUpdateControls} from "./item-update-form/item-update-form"
-
 import ItemTile from "./item-tile";
 //@@viewOff:imports
 
@@ -34,9 +30,6 @@ export const Item = createVisualComponent({
   //@@viewOff:defaultProps
 
   render(props) {
-
-    let url = UU5.Common.Url.parse(window.location.href);
-
     //@@viewOn:hooks
     const [open, close, showAlert, getConfirmRef] = useContextModal();
 

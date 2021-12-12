@@ -2,18 +2,15 @@
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import {createVisualComponent} from "uu5g04-hooks";
-import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
 
 import Config from "./config/config.js";
-import Lsi from "../config/lsi.js";
 
 import ListContext from "../routes/list/context/list-context";
 import ListLoader from "../routes/list/list-loader";
 
 import DataListStateResolver from "../routes/list/common/data-list-state-resolver"
 
-import {ListUpdateForm, ListUpdateHeader, ListUpdateControls} from "../routes/list/list-update-form/list-update-form"
 import {useContextModal} from "../routes/list/common/modal-manager";
 import List from "../routes/list/List";
 

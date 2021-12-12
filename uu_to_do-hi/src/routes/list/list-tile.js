@@ -2,8 +2,7 @@
 import UU5 from "uu5g04";
 import {createVisualComponent} from "uu5g04-hooks";
 import Config from "./config/config";
-import {ModalManager} from "./common/modal-manager";
-import Calls from 'calls';
+import Css from "./list.css"
 //@@viewOff:imports
 
 const STATICS = {
@@ -29,7 +28,6 @@ export const ListTile = createVisualComponent({
 
   render(props) {
     const {handleOpenDetailsModal, confirmModal, data: list} = props
-
     const confirm = props.confirmModal();
     //@@viewOn:private
     //@@viewOff:private
@@ -51,10 +49,19 @@ export const ListTile = createVisualComponent({
 
           <UU5.Bricks.Text content={list?.data?.name}/>
 
-          <UU5.Bricks.Button onClick={() => props.handleOpenDetailsModal(list)} size="m"
-                             colorSchema="green">Update</UU5.Bricks.Button>
+          <UU5.Bricks.Button className={Css.button()} onClick={() => {
+            UU5.Environment.setRoute({
+              url: {useCase: "item", parameters: {listId: list.data.id, name: list.data.name}}
+            })
+          }}>Select</UU5.Bricks.Button>
 
-          <UU5.Bricks.Button onClick={() => {
+
+          <UU5.Bricks.Button className={`${Css.edit()} ${Css.button()}`} onClick={() => props.handleOpenDetailsModal(list)} size="m"
+                             colorSchema="green"><UU5.Bricks.Icon icon="plus4u5-pencil"/>
+          </UU5.Bricks.Button>
+
+
+          <UU5.Bricks.Button className={Css.button()} onClick={() => {
             return confirm.open({
                 header: <UU5.Bricks.Header>Delete list</UU5.Bricks.Header>,
                 content: <UU5.Bricks.Div>Do you really want to delete this list?</UU5.Bricks.Div> ,
@@ -62,13 +69,9 @@ export const ListTile = createVisualComponent({
               }
             )
           }
-          }>Delete List
+          }><UU5.Bricks.Icon icon="mdi-delete"/>
           </UU5.Bricks.Button>
-          <UU5.Bricks.Button onClick={() => {
-            UU5.Environment.setRoute({
-              url: {useCase: "item", parameters: {listId: list.data.id, name: list.data.name}}
-            })
-          }}>Select</UU5.Bricks.Button>
+
         </UU5.Bricks.Card>
       </div>
     ) : null;

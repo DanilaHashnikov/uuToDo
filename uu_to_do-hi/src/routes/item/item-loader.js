@@ -7,7 +7,6 @@ import ItemContext from "./context/item-context";
 
 import Calls from "calls";
 import Config from "../../bricks/config/config.js";
-import Uu5Tiles from "uu5tilesg02";
 
 //@@viewOff:imports
 

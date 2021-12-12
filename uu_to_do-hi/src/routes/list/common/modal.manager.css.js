@@ -1,7 +1,3 @@
-//@@viewOn:revision
-// coded: Sofiia Franchuk (2734-2114-1), 11.08.2021
-// reviewed:
-//@@viewOff:revision
 import Config from "../config/config";
 
 const modalFix = () => Config.Css.css`

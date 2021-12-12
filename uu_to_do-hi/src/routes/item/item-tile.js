@@ -2,10 +2,7 @@
 import UU5 from "uu5g04";
 import {createVisualComponent, useState} from "uu5g04-hooks";
 import Config from "./config/config";
-import {ModalManager} from "./common/modal-manager";
-import Calls from 'calls';
-
-import {useItem} from "./context/context"
+import Css from "./item.css"
 //@@viewOff:imports
 
 const STATICS = {
@@ -50,6 +47,7 @@ export const ItemTile = createVisualComponent({
       // if(useCheckBoxState) {}
       await item?.handlerMap?.delete({id: item.data.id, forceDelete: useCheckBoxState})
     }
+
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -65,14 +63,16 @@ export const ItemTile = createVisualComponent({
 
     return currentNestingLevel ? (
       <div {...attrs}>
-        <UU5.Bricks.Card className="uu5-common-padding-s" colorSchema="green" disabled={item.data.state === 'completed'}>
+        <UU5.Bricks.Card className="uu5-common-padding-s" colorSchema="green"
+                         disabled={item.data.state === 'completed'}>
 
           <UU5.Bricks.Text content={item?.data?.text}/>
 
-          <UU5.Bricks.Button onClick={() => props.handleOpenDetailsModal(item)} size="m"
-                             colorSchema="green">Update</UU5.Bricks.Button>
+          <UU5.Bricks.Button className={Css.button()} onClick={() => props.handleOpenDetailsModal(item)} size="m"
+                             colorSchema="green"><UU5.Bricks.Icon icon="plus4u5-pencil"/>
+          </UU5.Bricks.Button>
 
-          <UU5.Bricks.Button onClick={() => {
+          <UU5.Bricks.Button className={Css.button()} onClick={() => {
             return confirm.open({
                 header: <UU5.Bricks.Header>Delete item</UU5.Bricks.Header>,
                 content: <UU5.Bricks.Div>Do you really want to delete this item?</UU5.Bricks.Div>,
@@ -81,14 +81,14 @@ export const ItemTile = createVisualComponent({
             )
           }
 
-          }>Delete Item
+          }><UU5.Bricks.Icon icon="mdi-delete"/>
           </UU5.Bricks.Button>
-          <UU5.Bricks.Text content="Case is done"/>
-          <UU5.Forms.Checkbox
-            value={useCheckBoxState}
-            size="xl"
-            onChange={()=> handleCheckBoxState(item.data.id)}
-          />
+            <UU5.Forms.Checkbox
+              className={Css.checkBox()}
+              value={useCheckBoxState}
+              size="xl"
+              onChange={() => handleCheckBoxState(item.data.id)}
+            />
         </UU5.Bricks.Card>
       </div>
     ) : null;

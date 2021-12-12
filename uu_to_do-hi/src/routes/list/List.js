@@ -1,14 +1,11 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useEffect } from "uu5g04-hooks";
+import { createVisualComponent} from "uu5g04-hooks";
 import Config from "./config/config";
 import Uu5Tiles from "uu5tilesg02";
 import {useContextModal} from "./common/modal-manager"
-
 import {useList} from "./context/use-list";
-
 import {ListUpdateForm, ListUpdateHeader, ListUpdateControls} from "./list-update-form/list-update-form"
-
 import ListTile from "./list-tile";
 //@@viewOff:imports
 
@@ -34,12 +31,9 @@ export const List = createVisualComponent({
 
   render(props) {
 
-    const [open, close, showAlert, getConfirmRef] = useContextModal();
-
-    const {data, handlerMap: listHandlerMap} = useList();
-
     //@@viewOff:hooks
-
+    const [open, close, showAlert, getConfirmRef] = useContextModal();
+    const {data, handlerMap: listHandlerMap} = useList();
     //@@viewOn:private
 
 

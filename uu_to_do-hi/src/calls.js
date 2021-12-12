@@ -5,8 +5,6 @@ import UU5 from "uu5g04";
 import Plus4U5 from "uu_plus4u5g01";
 
 let Calls = {
-  // APP_BASE_URI: "https://uuapp.plus4u.net/uu-jokes-maing01/4ef6a7b01b5942ecbfb925b249af987f/",
-
   APP_BASE_URI: location.protocol + "//" + location.host + UU5.Environment.getAppBasePath(),
 
   async call(method, url, dtoIn, clientOptions) {
@@ -41,10 +39,6 @@ let Calls = {
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  // loadJokesInstance(dtoIn) {
-  //   let commandUri = Calls.getCommandUri("jokesInstance/load");
-  //   return Calls.call("get", commandUri, dtoIn);
-  // },
 
   // end of lists
 

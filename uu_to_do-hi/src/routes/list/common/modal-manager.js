@@ -1,8 +1,3 @@
-//@@viewOn:revision
-// coded: Sofiia Franchuk (2734-2114-1), 11.08.2021
-// reviewed:
-//@@viewOff:revision
-
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import { createComponent, useRef, useContext } from "uu5g04-hooks";

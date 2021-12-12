@@ -35,7 +35,6 @@ const ItemUpdateForm = createVisualComponent({
     } = props;
 
     //@@viewOn:hooks
-    const inputLsi = useLsiValues(Lsi);
     const [isLoading, setLoading] = useState(false);
     //@@viewOff:hooks
 

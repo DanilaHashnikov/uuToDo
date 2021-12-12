@@ -1,8 +1,3 @@
-// template: UU5Lsi Error
-//@@viewOn:revision
-// coded: Sofiia Franchuk (2734-2114-1), 02.08.2021
-//@@viewOff:revision
-
 const Lsi = {
   noData: {
     en: "No data"

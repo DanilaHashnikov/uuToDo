@@ -1,8 +1,6 @@
 //@@viewOn:imports
-import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import {createVisualComponent} from "uu5g04-hooks";
-import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
 
 import Config from "./config/config.js";
@@ -51,7 +49,6 @@ export const Items = createVisualComponent({
     //@@viewOn:render
     return (
       <ModalManager>
-
           <ItemLoader>
             <ItemContext.Consumer>
               {(dataItemResult) => {
