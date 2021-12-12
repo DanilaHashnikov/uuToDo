@@ -1,12 +1,22 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent } from "uu5g04-hooks";
+import {createVisualComponent} from "uu5g04-hooks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
 
 import Config from "./config/config.js";
 import Lsi from "../config/lsi.js";
+
+import ListContext from "../routes/list/context/list-context";
+import ListLoader from "../routes/list/list-loader";
+
+import DataListStateResolver from "../routes/list/common/data-list-state-resolver"
+
+import {ListUpdateForm, ListUpdateHeader, ListUpdateControls} from "../routes/list/list-update-form/list-update-form"
+import {useContextModal} from "../routes/list/common/modal-manager";
+import List from "../routes/list/List";
+
 //@@viewOff:imports
 
 const STATICS = {
@@ -25,7 +35,14 @@ export const Left = createVisualComponent({
   //@@viewOff:defaultProps
 
   render(props) {
+    //@@viewOn:hooks
+
+    const {open, close, showAlert, getConfirmRef} = useContextModal();
+
+    //@@viewOff:hooks
+
     //@@viewOn:private
+
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -33,27 +50,24 @@ export const Left = createVisualComponent({
 
     //@@viewOn:render
     return (
-      <Plus4U5.App.Left
-        {...props}
-        logoProps={{
-          backgroundColor: UU5.Environment.colors.blue.c700,
-          backgroundColorTo: UU5.Environment.colors.blue.c500,
-          title: "uuTo",
-          companyLogo: Plus4U5.Environment.basePath + "assets/img/unicorn-logo.svg",
-          generation: "1",
-        }}
-        aboutItems={[{ content: <UU5.Bricks.Lsi lsi={Lsi.left.about} />, href: "about" }]}
-        helpHref={null}
-      >
-        <Plus4U5.App.MenuTree
-          borderBottom
-          // NOTE Item "id" equals to useCase so that item gets automatically selected when route changes (see spa-autheticated.js).
-          items={[{ id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home} /> }]}
-        />
-      </Plus4U5.App.Left>
+        <ListLoader>
+          <ListContext.Consumer>
+            {(dataListResult) => {
+              return (
+                <DataListStateResolver dataList={dataListResult}>
+                  <List/>
+                </DataListStateResolver>
+              )
+            }}
+          </ListContext.Consumer>
+        </ListLoader>
+
     );
     //@@viewOff:render
   },
 });
 
 export default Left;
+
+
+

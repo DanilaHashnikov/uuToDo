@@ -37,8 +37,8 @@ const JokeList = createVisualComponent({
     return (
       <UU5.Bricks.Row>
         {jokes.map(joke => (
-          <UU5.Bricks.Column key={joke.id} colWidth="xs-12 m-6 l-4 xl-3">
-            <Joke joke={joke} colorSchema="green" onDetail={onDetail} onUpdate={onUpdate} onDelete={onDelete} />
+          <UU5.Bricks.Column key={joke.data.id} colWidth="xs-12 m-6 l-4 xl-3">
+            <Joke joke={joke.data} colorSchema="green" onDetail={onDetail} onUpdate={onUpdate} onDelete={onDelete} />
           </UU5.Bricks.Column>
         ))}
         <Joke />

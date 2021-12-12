@@ -20,7 +20,6 @@ class ListMongo extends UuObjectDao {
       awid: uuObject.awid,
       id: uuObject.id,
     };
-    console.log(filter, uuObject);
     return await super.findOneAndUpdate(filter, uuObject, "NONE");
   }
 

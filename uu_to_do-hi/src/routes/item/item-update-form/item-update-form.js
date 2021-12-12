@@ -3,17 +3,17 @@ import UU5 from "uu5g04";
 import {createVisualComponent, useLsiValues, useState, useLoading} from "uu5g04-hooks";
 import Config from "../config/config";
 
-import Lsi from "./list-update-form-lsi";
+import Lsi from "./item-update-form-lsi";
 //@@viewOff:imports
 
 const STATICS = {
   //@@viewOn:statics
-  displayName: Config.TAG + "ListUpdateForm",
+  displayName: Config.TAG + "ItemUpdateForm",
   nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
-const ListUpdateForm = createVisualComponent({
+const ItemUpdateForm = createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -30,9 +30,9 @@ const ListUpdateForm = createVisualComponent({
       showAlert,
       data,
       listHandlerMap,
-      isCreateForm
+      isCreateForm,
+      listId
     } = props;
-
 
     //@@viewOn:hooks
     const inputLsi = useLsiValues(Lsi);
@@ -42,12 +42,9 @@ const ListUpdateForm = createVisualComponent({
 
     //@@viewOn:private
     async function handleUpdate(formData) {
-
       const {values, component} = formData;
       let action;
       let response;
-
-
       component.setPending();
       if(isCreateForm) {
         action = listHandlerMap.create
@@ -57,7 +54,7 @@ const ListUpdateForm = createVisualComponent({
 
       component.setPending()
       try {
-         response = await action(values);
+        response = await action({listId: listId, text: values.text});
       } catch (e) {
         component.getAlertBus().addAlert({
           content: <UU5.Common.Error content={<UU5.Bricks.Lsi lsi={Lsi.saveError} />} />,
@@ -99,7 +96,7 @@ const ListUpdateForm = createVisualComponent({
       >
         <UU5.Forms.Text
           label="Type your new input"
-          name="name"/>
+          name="text"/>
       </UU5.Forms.ContextForm>
     );
     //@@viewOff:render
@@ -107,7 +104,7 @@ const ListUpdateForm = createVisualComponent({
 });
 
 //viewOn:helpers
-const ListUpdateHeader = () => {
+const ItemUpdateHeader = () => {
   return (
     <UU5.Forms.ContextHeader
       content={<UU5.Bricks.Lsi lsi={Lsi.header}/>}
@@ -116,7 +113,7 @@ const ListUpdateHeader = () => {
   );
 };
 
-const ListUpdateControls = (isCreateForm) => {
+const ItemUpdateControls = (isCreateForm) => {
   return (
     <UU5.Forms.ContextControls
       buttonSubmitProps={{content: <UU5.Bricks.Lsi lsi={isCreateForm ? Lsi.submit("Create") : Lsi.submit("Update")}/>}}
@@ -127,6 +124,6 @@ const ListUpdateControls = (isCreateForm) => {
 //viewOff:helpers
 
 //viewOn:exports
-export {ListUpdateForm, ListUpdateHeader, ListUpdateControls};
-export default ListUpdateForm;
+export {ItemUpdateForm, ItemUpdateHeader, ItemUpdateControls};
+export default ItemUpdateForm;
 //viewOff:exports

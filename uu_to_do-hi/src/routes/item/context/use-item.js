@@ -1,10 +1,10 @@
 //@@viewOn:imports
 import { useContext } from "uu5g04-hooks";
-import Context from "./list-context";
+import Context from "./item-context";
 //@@viewOff:imports
 
-export function useList() {
+export function useItem() {
   return useContext(Context);
 }
 
-export default useList;
+export default useItem;

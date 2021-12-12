@@ -9,7 +9,7 @@ const Lsi = {
   },
   info: {
     en:
-      "<uu5string/>On this form you can update your lists. For more information see <UU5.Bricks.Link href='%s' target='_blank' content='documentation'/>.",
+      "<uu5string/>On this form you can update your item. For more information see <UU5.Bricks.Link href='%s' target='_blank' content='documentation'/>.",
   },
   submit: (param) => {
     return {

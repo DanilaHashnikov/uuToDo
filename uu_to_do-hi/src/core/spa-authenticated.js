@@ -1,14 +1,24 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent, useState } from "uu5g04-hooks";
+import {createVisualComponent, useState} from "uu5g04-hooks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
 
 import Config from "./config/config";
 import Left from "./left";
 import Bottom from "./bottom";
-import Home from "../routes/home";
+import List from "../routes/list/List"
+import Items from "../routes/item/Items"
+
+import Calls from "calls";
+import Uu5Tiles from "uu5tilesg02";
+import DataListStateResolver from "../routes/list/common/data-list-state-resolver"
+import {ModalManager} from "../routes/list/common/modal-manager"
+
+import ListContext from "../routes/list/context/list-context";
+import ListLoader from "../routes/list/list-loader";
+
 //@@viewOff:imports
 
 const STATICS = {
@@ -24,10 +34,9 @@ const ControlPanel = UU5.Common.Component.lazy(() => import("../routes/control-p
 const DEFAULT_USE_CASE = "home";
 const ROUTES = {
   "": DEFAULT_USE_CASE,
-  home: { component: <Home /> },
-  about: { component: <About /> },
-  "sys/uuAppWorkspace/initUve": { component: <InitAppWorkspace /> },
-  controlPanel: { component: <ControlPanel /> },
+  item: {component: <Items/>},
+  "sys/uuAppWorkspace/initUve": {component: <InitAppWorkspace/>},
+  controlPanel: {component: <ControlPanel/>},
 };
 
 export const SpaAuthenticated = createVisualComponent({
@@ -52,33 +61,35 @@ export const SpaAuthenticated = createVisualComponent({
 
     //@@viewOn:render
     return (
-      <Plus4U5.App.MenuProvider activeItemId={initialActiveItemId}>
-        <Plus4U5.App.Page
-          {...props}
-          top={<Plus4U5.App.TopBt />}
-          topFixed="smart"
-          bottom={<Bottom />}
-          type={3}
-          displayedLanguages={["cs", "en"]}
-          left={<Left />}
-          leftWidth="!xs-300px !s-300px !m-288px !l-288px !xl-288px"
-          leftFixed
-          leftRelative="m l xl"
-          leftResizable="m l xl"
-          leftResizableMinWidth={220}
-          leftResizableMaxWidth={500}
-          isLeftOpen="m l xl"
-          showLeftToggleButton
-          fullPage
-        >
-          <Plus4U5.App.MenuConsumer>
-            {({ setActiveItemId }) => {
-              let handleRouteChanged = ({ useCase, parameters }) => setActiveItemId(useCase || DEFAULT_USE_CASE);
-              return <UU5.Common.Router routes={ROUTES} controlled={false} onRouteChanged={handleRouteChanged} />;
-            }}
-          </Plus4U5.App.MenuConsumer>
-        </Plus4U5.App.Page>
-      </Plus4U5.App.MenuProvider>
+      <ModalManager>
+        <Plus4U5.App.MenuProvider activeItemId={initialActiveItemId}>
+          <Plus4U5.App.Page
+            {...props}
+            top={<Plus4U5.App.TopBt/>}
+            topFixed="smart"
+            bottom={<Bottom/>}
+            type={3}
+            displayedLanguages={["cs", "en"]}
+            left={<Left/>}
+            leftWidth="!xs-300px !s-300px !m-288px !l-288px !xl-288px"
+            leftFixed
+            leftRelative="m l xl"
+            leftResizable="m l xl"
+            leftResizableMinWidth={220}
+            leftResizableMaxWidth={500}
+            isLeftOpen="m l xl"
+            showLeftToggleButton
+            fullPage
+          >
+            <Plus4U5.App.MenuConsumer>
+              {({setActiveItemId}) => {
+                let handleRouteChanged = ({useCase, parameters}) => setActiveItemId(useCase || DEFAULT_USE_CASE);
+                return <UU5.Common.Router routes={ROUTES} controlled={false} onRouteChanged={handleRouteChanged}/>;
+              }}
+            </Plus4U5.App.MenuConsumer>
+          </Plus4U5.App.Page>
+        </Plus4U5.App.MenuProvider>
+      </ModalManager>
     );
     //@@viewOff:render
   },

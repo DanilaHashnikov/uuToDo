@@ -4,15 +4,10 @@ const Lsi = {
     en: "Application uuTo",
   },
 
-  left: {
-    home: {
-      cs: "Vítejte",
-      en: "Welcome",
-    },
-    about: {
-      cs: "O aplikaci",
-      en: "About Application",
-    },
+  left: (param) => {
+    return {
+      en: `${param}`,
+    };
   },
 
   about: {

@@ -72,7 +72,8 @@ class ItemMongo extends UuObjectDao {
 
     async list(uuObject) {
         let filter = {
-            awid: uuObject.awid
+            awid: uuObject.awid,
+            listId: uuObject.listId
         }
         return await super.find(filter)
     }
